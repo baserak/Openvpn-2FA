@@ -24,7 +24,7 @@ function newClient() {
 	else
 		cd /etc/openvpn/easy-rsa/ || return
 		echo "${PW}"; echo "${PW}" | ./easyrsa build-client-full "${CLIENT}"
-		#./easyrsa build-client-full "$CLIENT"
+		#./easyrsa build-client-full "$CLIENT" nopass
 		echo "Client $CLIENT added."
 	fi
 
@@ -103,7 +103,7 @@ If DNS is not working, you can use the /etc/hosts list below to connect to hosts
 ----------------------------------------
 ${hostlist}
     """
-    echo "${content}" | mailx -s "Your OpenVPN profile" -a "${CLIENTDIR}/${CLIENT}/${CLIENT}.ovpn" -a "/opt/openvpn/google-auth/${CLIENT}.png" -r "Devops<devops@company.com>" ${CLIENT}@company.com || { echo "error mailing profile to client"; exit 1; }
+    echo "${content}" # | mailx -s "Your OpenVPN profile" -a "${CLIENTDIR}/${CLIENT}/${CLIENT}.ovpn" -a "/opt/openvpn/google-auth/${CLIENT}.png" -r "Devops<devops@company.com>" ${CLIENT}@company.com || { echo "error mailing profile to client"; exit 1; }
 fi
 
 
