@@ -1,4 +1,4 @@
-<strong># Openvpn-2FA</strong>
+<strong># Openvpn-2FA</strong></br>
 OpenVPN community server with Google Authenticator</br>
 fixed known bugs 
 <h2><strong>Manual </strong></h2></br>
