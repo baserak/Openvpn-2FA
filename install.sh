@@ -349,7 +349,7 @@ echo -e "######  ####### #     # ####### "
 
 function removeOpenVPN() {
 	echo ""
-	read -rp "Do you really want to remove OpenVPN? [y/n]: " -e -i n REMOVE
+	read -rp "Do you really want to remove OpenVPN? [y/n]: " -e -i y REMOVE
 	if [[ $REMOVE == 'y' ]]; then
 		# Get OpenVPN port from the configuration
 		PORT=$(grep '^port ' /etc/openvpn/server.conf | cut -d " " -f 2)
@@ -405,18 +405,30 @@ function manageMenu() {
 	echo "What do you want to do?"
 	echo "   1) Remove OpenVPN"
 	echo "   2) Exit"
-	until [[ $MENU_OPTION =~ ^[1-4]$ ]]; do
+	until [[ $MENU_OPTION =~ ^[1-2]$ ]]; do
 		read -rp "Select an option [1-4]: " MENU_OPTION
 	done
 	case $MENU_OPTION in
 	1)
 		removeOpenVPN
 		;;
-	2)
-		exit 0
+	2)  
+		exitfun
 		;;
 	esac
 }
+
+function exitfun() {
+		echo "####  #   # ####   ####  #   # ####"
+		echo "#   #  # #  #      #   #  # #  #   "
+		echo "####    #   ###    ####    #   ### "
+		echo "#   #   #   #      #   #   #   #   "
+		echo "####    #   ####   ####    #   ####"
+		exit 0
+
+}
+
+
 # Check for root, TUN, OS...
 initialCheck
 
