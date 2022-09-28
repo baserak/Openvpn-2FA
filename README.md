@@ -1,8 +1,12 @@
 <strong># Openvpn-2FA</strong>
 OpenVPN community server with Google Authenticator</br>
 fixed known bugs 
-
-
+<h2><strong>Manual </strong></h2></br>
+ First run software.sh </br>
+ Next run install.sh </br>
+ Open manual from perfecto25 <a href='https://perfecto25.medium.com/openvpn-community-2fa-with-google-authenticator-4f2a7cb08128'>LINK TO MANUAL</a> </br>
+ for full description of this setup </br>
+ 
 ------------------------------------------------------------------------------------------------------------------------
  Added any files</br>
  </br>
