@@ -180,15 +180,14 @@ function installOpenVPN() {
 		1)
 			echo "set_var EASYRSA_ALGO ec" >vars
 			echo "set_var EASYRSA_CURVE $CERT_CURVE" >>vars
-			echo "set_var EASYRSA_REQ_COUNTRY     'USA'" >>vars
-			echo "set_var EASYRSA_REQ_CITY        'Seatle' " >>vars
+			echo "set_var EASYRSA_REQ_COUNTRY     'KZ'" >>vars
+			echo "set_var EASYRSA_REQ_CITY        'Almaty' " >>vars
 			echo "set_var EASYRSA_REQ_OU          '$SERVER_NAME EASY CA' " >>vars
 			;;
 		2)
 			echo "set_var EASYRSA_KEY_SIZE $RSA_KEY_SIZE" >vars
 			;;
 		esac
-
 		# Generate a random, alphanumeric identifier of 16 characters for CN and one for server name
 		SERVER_CN="cn_$(head /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 16 | head -n 1)"
 		echo "$SERVER_CN" >SERVER_CN_GENERATED
@@ -203,21 +202,16 @@ function installOpenVPN() {
 		./easyrsa build-server-full "$SERVER_NAME" nopass
 		EASYRSA_CRL_DAYS=3650 ./easyrsa gen-crl
 		openvpn --genkey --secret /etc/openvpn/tls-crypt.key
-        
-		
 	else
 		# If easy-rsa is already installed, grab the generated SERVER_NAME
 		# for client configs
 		cd /etc/openvpn/easy-rsa/ || return
 		SERVER_NAME=$(cat SERVER_NAME_GENERATED)
 	fi
-	
     # Move all the generated files
 	cp pki/ca.crt pki/private/ca.key "pki/issued/$SERVER_NAME.crt" "pki/private/$SERVER_NAME.key" /etc/openvpn/easy-rsa/pki/crl.pem /etc/openvpn
-	
 	# Make cert revocation list readable for non-root
 	chmod 644 /etc/openvpn/crl.pem
-
 	# Generate server.conf
 	echo -e "port $PORT \n
 proto ${PROTOCOL} \n
@@ -250,10 +244,8 @@ status /var/log/openvpn/status.log \n
 log-append  /var/log/openvpn/openvpn.log \n
 duplicate-cn \n
 verb 6" >>/etc/openvpn/server.conf
-
     # remove empty lines
     sed -i '/^$/d' /etc/openvpn/server.conf
-
 	# Create client-config-dir dir
 	mkdir -p /etc/openvpn/ccd
 	# Create log dir
@@ -262,7 +254,6 @@ verb 6" >>/etc/openvpn/server.conf
 	echo "net.ipv4.ip_forward=1" >/etc/sysctl.d/99-openvpn.conf
     echo "net.ipv6.conf.all.disable_ipv6=1" >/etc/sysctl.d/99-openvpn.conf
     echo "net.ipv6.conf.default.disable_ipv6=1" >/etc/sysctl.d/99-openvpn.conf
-
 	# Apply sysctl rules
 	sysctl --system
 	# If SELinux is enabled and a custom port was selected, we need this
@@ -274,7 +265,6 @@ verb 6" >>/etc/openvpn/server.conf
 		fi
 	fi
 	# Finally, restart and enable OpenVPN
-	
     # Don't modify package-provided service
     cp /lib/systemd/system/openvpn\@.service /etc/systemd/system/openvpn\@.service
     # Workaround to fix OpenVPN service on OpenVZ
@@ -284,7 +274,6 @@ verb 6" >>/etc/openvpn/server.conf
     systemctl daemon-reload
     systemctl enable openvpn@server
     systemctl restart openvpn@server
-
 	# Add iptables rules in two scripts
 	mkdir -p /etc/iptables
 	# Script to add rules
@@ -294,7 +283,6 @@ verb 6" >>/etc/openvpn/server.conf
     iptables -I FORWARD 1 -i $NIC -o tun0 -j ACCEPT
     iptables -I FORWARD 1 -i tun0 -o $NIC -j ACCEPT
     iptables -I INPUT 1 -i $NIC -p $PROTOCOL --dport $PORT -j ACCEPT" >/etc/iptables/add-openvpn-rules.sh
-	
 	# Script to remove rules
 	echo "#!/bin/sh
     iptables -t nat -D POSTROUTING -s ${SUBNET}/24 -o $NIC -j MASQUERADE
@@ -302,7 +290,6 @@ verb 6" >>/etc/openvpn/server.conf
     iptables -D FORWARD -i $NIC -o tun0 -j ACCEPT
     iptables -D FORWARD -i tun0 -o $NIC -j ACCEPT
     iptables -D INPUT -i $NIC -p $PROTOCOL --dport $PORT -j ACCEPT" >/etc/iptables/rm-openvpn-rules.sh
-	
 	chmod +x /etc/iptables/add-openvpn-rules.sh
 	chmod +x /etc/iptables/rm-openvpn-rules.sh
 	# Handle the rules via a systemd script
@@ -350,10 +337,14 @@ static-challenge \"Enter 2FA Authenticator code:\" 1 \n
 dhcp-option DOMAIN-ROUTE . \n
 pull-filter ignore redirect-gateway \n
 verb 6" >>/etc/openvpn/client-template.txt
-
 sed -i '/^$/d' /etc/openvpn/client-template.txt
-
-echo -e "\nInstall complete\n"
+echo -e "######  ####### #     # ####### "
+echo -e "#     # #     # ##    # #       "
+echo -e "#     # #     # # #   # #       "
+echo -e "#     # #     # #  #  # #####   "
+echo -e "#     # #     # #   # # #       "
+echo -e "#     # #     # #    ## #       "
+echo -e "######  ####### #     # ####### "
 }
 
 function removeOpenVPN() {
