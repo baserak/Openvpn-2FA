@@ -143,6 +143,12 @@ function installOpenVPN() {
 	# idempotent on multiple runs, but will only install OpenVPN from upstream
 	# the first time.
 	if [[ ! -e /etc/openvpn/server.conf ]]; then
+		
+		echo "### #     #  #####  #######    #    #       #          #####  ####### ####### ####### #     #    #    ######  ####### "
+		echo " #  # #   # #          #     #   #  #       #         #       #     # #          #    #  #  #  #   #  #     # #       "
+		echo " #  #  #  #  #####     #    #     # #       #          #####  #     # #####      #    #  #  # #     # ######  #####   "
+		echo " #  #   # #       #    #    ####### #       #               # #     # #          #    #  #  # ####### #   #   #       "
+		echo "### #     #  #####     #    #     # ####### #######    #####  ####### #          #     ## ##  #     # #     # ####### "	
 		yum install -y update 	
 		yum install -y upgrade
 		sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
