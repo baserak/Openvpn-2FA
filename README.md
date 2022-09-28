@@ -19,7 +19,7 @@ fixed known bugs
       
  <strong>#install.sh<strong></br>
   install Openvpn, install google-authenticator and adjusts a little</br>
-------------------------------------------------------------------------------------------------------------------------</br>
+------------------------------------------------------------------------------------------------------------------------
 </br>
 <h1 id="custom-id">Taken from other user <a href='https://github.com/perfecto25/openvpn_2fa'>perfecto25</a></h1></br>
 see https://perfecto25.medium.com/openvpn-community-2fa-with-google-authenticator-4f2a7cb08128</br>
