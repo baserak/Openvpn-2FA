@@ -11,7 +11,7 @@ for full description of this setup</br>
 ------------------------------------------------------------------------------------------------------------------------------
 <h1>Known bugs</h1></br>
 <p> If you have a proxy in your company, plese configure install.sh</br>
-write on 60 line</br> 
+ change install.sh on 60 line to like that </br> 
  IP=$(curl -x "http://{proxi_ip_address}:{proxy_port}"-4 "http://icanhazip.com" )</br>
  or</br>
  IP=$(curl -x "http://{user}:{pwd}@{127.0.0.1}:{1234}"-4 "http://icanhazip.com" )</br>
