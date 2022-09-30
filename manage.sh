@@ -23,7 +23,7 @@ function newClient() {
 		exit
 	else
 		cd /etc/openvpn/easy-rsa/ || return
-		echo "${PW}"; echo "${PW}" | ./easyrsa build-client-full "${CLIENT}"
+		echo "${PW}"; echo "${PW}" | ./easyrsa build-client-full "${CLIENT}" nopass
 		#./easyrsa build-client-full "$CLIENT" nopass
 		echo "Client $CLIENT added."
 	fi
