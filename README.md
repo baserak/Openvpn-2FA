@@ -9,6 +9,24 @@ for full description of this setup</br>
 </br>
 
 ------------------------------------------------------------------------------------------------------------------------------
+<h1>Known bugs</h1></br>
+<p> If you have a proxy in your company, plese configure install.sh</br>
+write on 60 line</br> 
+ IP=$(curl -x "http://{proxi_ip_address}:{proxy_port}"-4 "http://icanhazip.com" )</br>
+ or</br>
+ IP=$(curl -x "http://{user}:{pwd}@{127.0.0.1}:{1234}"-4 "http://icanhazip.com" )</br>
+ if you have a proxy with login and pass </br>
+ </br>
+and config file /etc/wgetrc</br>
+in line 78-79</br>
+https_proxy = http:/{proxi_ip_address}:{proxy_port}</br>
+http_proxy = http://{proxi_ip_address}:{proxy_port}</br>
+if you need ftp uncomment line 80</br>
+#ftp_proxy = http://{proxi_ip_address}:{proxy_port}</br>
+
+
+</p>
+------------------------------------------------------------------------------------------------------------------------------
 
 </br>
 uses a modfied version of installation script from https://github.com/angristan/openvpn-install</br>
