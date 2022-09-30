@@ -1,6 +1,20 @@
 <strong># Openvpn-2FA</strong></br>
 OpenVPN community server with Google Authenticator</br>
 fixed known bugs 
+
+
+<h1 id="custom-id">Taken from other user <a href='https://github.com/perfecto25/openvpn_2fa'>perfecto25</a></h1></br>
+see https://perfecto25.medium.com/openvpn-community-2fa-with-google-authenticator-4f2a7cb08128</br>
+for full description of this setup</br>
+</br>
+
+------------------------------------------------------------------------------------------------------------------------------
+
+</br>
+uses a modfied version of installation script from https://github.com/angristan/openvpn-install</br>
+specifically tailored for Rocky Linux 8tt</br>
+
+
 <h2><strong>Manual </strong></h2></br>
  First run software.sh </br>
  Next run install.sh </br>
@@ -46,14 +60,3 @@ fixed known bugs
 
  <h2><strong>#editserver.sh</strong></h2></br>
   Open server.conf with nano 
-
-<h1 id="custom-id">Taken from other user <a href='https://github.com/perfecto25/openvpn_2fa'>perfecto25</a></h1></br>
-see https://perfecto25.medium.com/openvpn-community-2fa-with-google-authenticator-4f2a7cb08128</br>
-for full description of this setup</br>
-</br>
-
-------------------------------------------------------------------------------------------------------------------------------
-
-</br>
-uses a modfied version of installation script from https://github.com/angristan/openvpn-install</br>
-specifically tailored for Rocky Linux 8tt</br>
