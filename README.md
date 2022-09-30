@@ -61,7 +61,9 @@ specifically tailored for Rocky Linux 8tt</br>
   usage:</br>
    ./manage.sh create/revoke <username></br>
   ./manage.sh status</br>
-
+P.S Recomendacion: 
+  if you need set pin to cert in ./manage.sh on line 26 delete <a class='redwords'>nopass</a>
+  
  
 
  <h2><strong>#statusovpn.sh</strong></h2></br>
